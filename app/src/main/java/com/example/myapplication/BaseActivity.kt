@@ -4,7 +4,7 @@ import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
 import java.io.File
 import java.text.SimpleDateFormat
-import java.util.*
+import java.util.Date
 
 open class BaseActivity: AppCompatActivity() {
     private val sdf = SimpleDateFormat("dd/M/yyyy hh:mm:ss")
