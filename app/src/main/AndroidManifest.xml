@@ -11,11 +11,13 @@
         android:theme="@style/Theme.MyApplication" >
         <activity
             android:name=".SecondActivity"
-            android:exported="true" />
-        <activity
-            android:name=".FirstActivity"
             android:exported="true"
-            android:configChanges="orientation|screenSize|screenLayout|keyboardHidden">
+            />
+        <activity
+
+            android:name=".FirstActivity"
+            android:configChanges="orientation|screenSize|screenLayout|keyboardHidden"
+            android:exported="true" >
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 

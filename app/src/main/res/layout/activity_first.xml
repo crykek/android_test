@@ -6,28 +6,32 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         tools:context=".FirstActivity">
-    <TextView
+    <com.google.android.material.floatingactionbutton.FloatingActionButton
+            android:id="@+id/add_fab"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="0"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintLeft_toLeftOf="parent"
-            app:layout_constraintRight_toRightOf="parent"
-            app:layout_constraintTop_toTopOf="parent" android:textSize="60sp" android:id="@+id/number"/>
-    <Button
-            android:text="Switch activity"
-            android:layout_width="wrap_content"
-            android:layout_height="68dp" android:id="@+id/switchButton"
-            app:layout_constraintBottom_toBottomOf="parent"
-            android:layout_marginBottom="40dp"
+            android:layout_marginBottom="36dp"
+            android:layout_marginEnd="36dp"
+            android:layout_gravity="end|bottom"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"/>
+            app:layout_constraintBottom_toBottomOf="parent"
+            android:src="@drawable/add_button"
+    />
     <TextView
-            android:text="Activity 1"
-            android:layout_width="208dp"
-            android:layout_height="76dp" android:id="@+id/textView"
-            android:textAlignment="center" android:textSize="48sp" app:layout_constraintStart_toStartOf="parent"
-            android:layout_marginStart="101dp" app:layout_constraintTop_toTopOf="parent"
-            android:layout_marginTop="15dp" android:layout_marginEnd="102dp" app:layout_constraintEnd_toEndOf="parent"/>
+            android:text="@string/habit_list_title"
+            android:layout_width="300dp"
+            android:layout_height="40dp" android:id="@+id/habits_list_title"
+            android:textAlignment="center" android:textSize="32sp" app:layout_constraintStart_toStartOf="parent"
+            android:layout_marginStart="70dp" app:layout_constraintTop_toTopOf="parent"
+            android:layout_marginTop="15dp" android:layout_marginEnd="70dp" app:layout_constraintEnd_toEndOf="parent"/>
+    <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/recycler_view"
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            app:layout_constraintTop_toBottomOf="@id/habits_list_title"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintBottom_toBottomOf="parent"
+            tools:listitem="@layout/recycler_list_item"
+    />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

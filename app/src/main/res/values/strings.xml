@@ -1,3 +1,46 @@
 <resources>
     <string name="app_name">My Application</string>
+    <string name="title_activity_list">ListActivity</string>
+    <!-- Strings used for fragments for navigation -->
+    <string name="first_fragment_label">First Fragment</string>
+    <string name="second_fragment_label">Second Fragment</string>
+    <string name="next">Next</string>
+    <string name="previous">Previous</string>
+
+    <string name="hello_first_fragment">Hello first fragment</string>
+    <string name="hello_second_fragment">Hello second fragment. Arg: %1$s</string>
+
+    <!-- Строки интерфейса -->
+    <string name="habit_list_title">Список привычек</string>
+    <string name="add_habit_title">Добавление привычки</string>
+    <string name="add">Сохранить</string>
+    <string name="name">Название</string>
+    <string name="description">Описание</string>
+    <string name="priority">Приоритет</string>
+    <string name="type">Тип</string>
+    <string name="times">Количество выполнений</string>
+    <string name="period">Период</string>
+    <string name="color_picker_title">Выберите цвет</string>
+    <string name="color_picker_current_rgb">R: %d G: %d B: %d</string>
+    <string name="color_picker_current_hsv">H: %.0f S: %.2f V: %.2f</string>
+
+    <!-- Типы привычек -->
+    <string name="type_positive">Полезная</string>
+    <string name="type_negative">Вредная</string>
+
+    <!-- Дефолтные значения -->
+    <string name="name_default">Пробежка</string>
+    <string name="description_default">Пробежать по стадиону</string>
+    <string name="times_default">10 минут</string>
+    <string name="period_default">Каждый день</string>
+
+    <string name="priority_high">Высокий</string>
+    <string name="priority_medium">Средний</string>
+    <string name="priority_low">Низкий</string>
+
+    <string-array name="priorities">
+        <item>Высокий</item>
+        <item>Средний</item>
+        <item>Низкий</item>
+    </string-array>
 </resources>
