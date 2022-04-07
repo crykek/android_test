@@ -15,7 +15,7 @@
             />
         <activity
 
-            android:name=".FirstActivity"
+            android:name=".activity.MainActivity"
             android:configChanges="orientation|screenSize|screenLayout|keyboardHidden"
             android:exported="true" >
             <intent-filter>

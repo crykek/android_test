@@ -8,10 +8,17 @@
         <entry key="app/src/main/res/drawable/color_picker_element.xml" value="0.17395833333333333" />
         <entry key="app/src/main/res/drawable/gradient.xml" value="0.35572916666666665" />
         <entry key="app/src/main/res/drawable/ic_launcher_background.xml" value="0.18229166666666666" />
-        <entry key="app/src/main/res/layout/activity_first.xml" value="0.18177083333333333" />
+        <entry key="app/src/main/res/layout/activity_first.xml" value="0.15" />
         <entry key="app/src/main/res/layout/activity_main.xml" value="0.333786231884058" />
         <entry key="app/src/main/res/layout/activity_second.xml" value="0.24880095923261392" />
+        <entry key="app/src/main/res/layout/add_habit_fragment.xml" value="0.333786231884058" />
+        <entry key="app/src/main/res/layout/all_lists_fragment.xml" value="0.15625" />
+        <entry key="app/src/main/res/layout/bottom_sheet_fragment.xml" value="0.25" />
+        <entry key="app/src/main/res/layout/info_fragment.xml" value="0.16510416666666666" />
+        <entry key="app/src/main/res/layout/list_fragment.xml" value="0.333786231884058" />
         <entry key="app/src/main/res/layout/recycler_list_item.xml" value="0.25" />
+        <entry key="app/src/main/res/layout/side_menu.xml" value="0.15625" />
+        <entry key="app/src/main/res/menu/nav_menu.xml" value="0.171875" />
       </map>
     </option>
   </component>

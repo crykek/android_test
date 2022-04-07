@@ -10,6 +10,17 @@
     <string name="hello_first_fragment">Hello first fragment</string>
     <string name="hello_second_fragment">Hello second fragment. Arg: %1$s</string>
 
+    <!-- Текст инфo -->
+    <string name="info_name">Трекер привычек</string>
+    <string name="info_author">Автор: Мокряк Антон</string>
+    <string name="info_year">2022</string>
+
+    <!-- Пункты бокового меню -->
+    <string name="nav_home">На главную</string>
+    <string name="nav_info">Информация</string>
+    <string name="nav_open">Открыть</string>
+    <string name="nav_close">Закрыть</string>
+
     <!-- Строки интерфейса -->
     <string name="habit_list_title">Список привычек</string>
     <string name="add_habit_title">Добавление привычки</string>
@@ -23,10 +34,15 @@
     <string name="color_picker_title">Выберите цвет</string>
     <string name="color_picker_current_rgb">R: %d G: %d B: %d</string>
     <string name="color_picker_current_hsv">H: %.0f S: %.2f V: %.2f</string>
+    <string name="filter_title">Фильтрация</string>
+    <string name="filter_name">По имени</string>
+    <string name="filter_priority">По приоритету</string>
 
     <!-- Типы привычек -->
     <string name="type_positive">Полезная</string>
     <string name="type_negative">Вредная</string>
+    <string name="all_positive">Полезные</string>
+    <string name="all_negative">Вредные</string>
 
     <!-- Дефолтные значения -->
     <string name="name_default">Пробежка</string>
