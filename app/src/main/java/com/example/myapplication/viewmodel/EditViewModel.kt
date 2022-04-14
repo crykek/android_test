@@ -9,6 +9,9 @@ import com.example.myapplication.data.HabitPriority
 import com.example.myapplication.data.HabitRecord
 import com.example.myapplication.data.HabitType
 import com.example.myapplication.utils.Action
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.GlobalScope
+import kotlinx.coroutines.launch
 
 class EditViewModel : ViewModel() {
 
@@ -23,6 +26,9 @@ class EditViewModel : ViewModel() {
 
     private val mutableHabitChangedFlag: MutableLiveData<Boolean> = MutableLiveData()
     val habitChangedFlag: LiveData<Boolean> = mutableHabitChangedFlag
+
+    private val mutableHabitSubmitted: MutableLiveData<Boolean> = MutableLiveData()
+    val habitSubmitted: LiveData<Boolean> = mutableHabitSubmitted
 
     fun setCurrentColor(position: Int, color: Int) {
         mutableCurrentColorIndex.value = position
@@ -49,6 +55,7 @@ class EditViewModel : ViewModel() {
         periodFieldValue: String,
         color: Int
     ) {
+
         val currentHabit = HabitList.currentHabit
 
         currentHabit.name = nameFieldValue
@@ -60,12 +67,17 @@ class EditViewModel : ViewModel() {
         currentHabit.color = color
         currentHabit.colorIndex = mutableCurrentColorIndex.value ?: 0
 
-        if (currentHabit.position >= HabitList.currentCount) {
-            HabitList.addHabit(currentHabit)
-        } else {
-            HabitList.updateHabit(currentHabit)
+        GlobalScope.launch(Dispatchers.IO) {
+
+            if (currentHabit.position >= HabitList.currentCount) {
+                HabitList.addHabit(currentHabit)
+            } else {
+                HabitList.updateHabit(currentHabit)
+            }
+
+            mutableHabitChangedFlag.postValue(true)
         }
 
-        mutableHabitChangedFlag.value = true
+        mutableHabitSubmitted.value = true
     }
 }

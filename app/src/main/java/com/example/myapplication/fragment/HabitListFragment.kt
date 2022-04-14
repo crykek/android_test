@@ -93,7 +93,7 @@ class HabitListFragment(private val habitType: HabitType) : Fragment(), RecycleV
         }
     }
 
-    private fun filterAndUpdateList() {
+    fun filterAndUpdateList() {
         listViewModel.filterHabits(
             HabitList.getHabitList(),
             arrayListOf(NameFilter(filteredName), TypeFilter(habitType), PriorityFilter(filteredPriorities)),

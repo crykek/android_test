@@ -72,4 +72,9 @@ class AllListsFragment: Fragment() {
             listViewModel.setHighPriorityFilter(b)
         }
     }
+
+    fun filter() {
+        val fragment: HabitListFragment = activity?.supportFragmentManager?.findFragmentByTag("f" + viewPager.currentItem) as HabitListFragment
+        fragment.filterAndUpdateList()
+    }
 }

@@ -31,11 +31,6 @@ class ListViewModel : ViewModel() {
         mutableStartEditFlag.value = true
     }
 
-    /*fun startEditing(position: Int) {
-        val habitRecord = HabitList.getHabitWithPosition(position)
-        startEditing(habitRecord)
-    }*/
-
     fun startAdding(defaultName: String, defaultDescription: String, defaultTimes: String, defaultPeriod: String) {
         val newHabit = HabitRecord(
             HabitList.currentCount,

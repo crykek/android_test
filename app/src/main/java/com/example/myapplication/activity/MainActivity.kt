@@ -99,6 +99,11 @@ class MainActivity : BaseActivity() {
         }
 
         editViewModel.habitChangedFlag.observe(this) {
+            //replaceFragmentWithClass(Constants.FRAGMENT_ALL_LISTS)
+            allListsFragment.filter()
+        }
+
+        editViewModel.habitSubmitted.observe(this) {
             replaceFragmentWithClass(Constants.FRAGMENT_ALL_LISTS)
         }
     }
