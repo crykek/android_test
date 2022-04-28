@@ -6,8 +6,6 @@ import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.room.Room
 import com.example.myapplication.network.NetworkManager
-import com.example.myapplication.utils.Action
-import com.example.myapplication.utils.IdGenerator
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.GlobalScope
 import kotlinx.coroutines.launch
@@ -28,11 +26,6 @@ object HabitList {
     private var readRemote: Boolean = false
 
     private lateinit var habitWithoutId: HabitRecord
-
-    val colors: ArrayList<Int> = arrayListOf(
-        -47104, -24576, -1792, -5243136, -10944768, -16711904, -16711819, -16711732, -16721409,
-        -16743681, -16765697, -12779265, -7077633, -1507073, -65363, -65452
-    )
 
     fun initDatabase(context: Context, networkManager: NetworkManager) {
         db = Room.databaseBuilder(context, HabitDataBase::class.java, "HabitDB").fallbackToDestructiveMigration()

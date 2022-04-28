@@ -8,10 +8,7 @@ import android.view.ViewGroup
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import com.example.myapplication.R
-import com.example.myapplication.data.HabitList
-import com.example.myapplication.data.HabitPriority
-import com.example.myapplication.data.HabitRecord
-import com.example.myapplication.data.HabitType
+import com.example.myapplication.data.*
 
 class RecycleViewAdapter(private var habitList: List<HabitRecord>, private val context: Context,
                          private val listener: OnItemClickListener
@@ -64,7 +61,7 @@ class RecycleViewAdapter(private var habitList: List<HabitRecord>, private val c
 
         holder.timesView.text = currentItem.times
         holder.periodView.text = currentItem.period
-        holder.itemView.setBackgroundColor(HabitList.colors[currentItem.colorIndex])     //  (holder.itemView as CardView).setCardBackgroundColor(currentItem.color)
+        holder.itemView.setBackgroundColor(Colors.colors[currentItem.colorIndex])
     }
 
     override fun getItemCount(): Int {

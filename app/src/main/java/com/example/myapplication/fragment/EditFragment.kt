@@ -11,10 +11,7 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
 import com.example.myapplication.R
-import com.example.myapplication.data.HabitList
-import com.example.myapplication.data.HabitPriority
-import com.example.myapplication.data.HabitRecord
-import com.example.myapplication.data.HabitType
+import com.example.myapplication.data.*
 import com.example.myapplication.viewmodel.EditViewModel
 import com.example.myapplication.viewmodel.EditViewModelFactory
 
@@ -113,7 +110,7 @@ class EditFragment : Fragment() {
             }
         }
 
-        editViewModel.setCurrentColor(0, colors[0])
+        editViewModel.setCurrentColor(0, Colors.colors[0])
     }
 
     private fun setValues(

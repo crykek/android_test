@@ -8,7 +8,6 @@ import com.example.myapplication.data.HabitPriority
 import com.example.myapplication.data.HabitRecord
 import com.example.myapplication.data.HabitType
 import com.example.myapplication.filter.IFilter
-import com.example.myapplication.utils.IdGenerator
 
 class ListViewModel : ViewModel() {
 
