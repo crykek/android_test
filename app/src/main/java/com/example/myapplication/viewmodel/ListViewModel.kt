@@ -8,6 +8,7 @@ import com.example.myapplication.data.HabitPriority
 import com.example.myapplication.data.HabitRecord
 import com.example.myapplication.data.HabitType
 import com.example.myapplication.filter.IFilter
+import com.example.myapplication.utils.IdGenerator
 
 class ListViewModel : ViewModel() {
 
@@ -33,7 +34,7 @@ class ListViewModel : ViewModel() {
 
     fun startAdding(defaultName: String, defaultDescription: String, defaultTimes: String, defaultPeriod: String) {
         val newHabit = HabitRecord(
-            HabitList.currentCount,
+            "0",
             defaultName,
             defaultDescription,
             HabitPriority.getDefaultValue(),
@@ -41,7 +42,7 @@ class ListViewModel : ViewModel() {
             defaultTimes,
             defaultPeriod,
             0,
-            0
+            //0
         )
 
         startEditing(newHabit)

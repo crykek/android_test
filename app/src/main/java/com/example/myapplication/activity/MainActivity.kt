@@ -2,15 +2,19 @@ package com.example.myapplication.activity
 
 import android.os.Bundle
 import android.view.MenuItem
+import android.widget.ImageView
 import androidx.appcompat.app.ActionBarDrawerToggle
 import androidx.drawerlayout.widget.DrawerLayout
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.commitNow
 import androidx.lifecycle.ViewModelProvider
+import com.bumptech.glide.Glide
 import com.example.myapplication.utils.Constants
 import com.example.myapplication.R
 import com.example.myapplication.data.HabitList
 import com.example.myapplication.fragment.*
+import com.example.myapplication.network.NetworkManager
+import com.example.myapplication.network.NetworkService
 import com.example.myapplication.viewmodel.EditViewModel
 import com.example.myapplication.viewmodel.EditViewModelFactory
 import com.example.myapplication.viewmodel.ListViewModel
@@ -29,11 +33,13 @@ class MainActivity : BaseActivity() {
     private lateinit var listViewModel: ListViewModel
     private lateinit var editViewModel: EditViewModel
 
+    private val networkManager: NetworkManager = NetworkManager()
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_first)
 
-        HabitList.initDatabase(this)
+        HabitList.initDatabase(this, networkManager)
 
         listViewModel = ViewModelProvider(this, ListViewModelFactory()).get(ListViewModel::class.java)
         editViewModel = ViewModelProvider(this, EditViewModelFactory()).get(EditViewModel::class.java)
@@ -64,7 +70,20 @@ class MainActivity : BaseActivity() {
             true
         }
 
+        setupAvatarImage(navigationView)
+
         setupObservers()
+    }
+
+    private fun setupAvatarImage(navigationView: NavigationView) {
+        val avatar: ImageView = navigationView.getHeaderView(0).findViewById(R.id.avatar)
+        Glide.with(this)
+            .load("https://img.icons8.com/color/480/berserk.png")
+            .override(80, 80)
+            .placeholder(R.drawable.avatar_placeholder)
+            .error(R.drawable.avatar_error)
+            .centerCrop()
+            .into(avatar);
     }
 
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
@@ -99,7 +118,10 @@ class MainActivity : BaseActivity() {
         }
 
         editViewModel.habitChangedFlag.observe(this) {
-            //replaceFragmentWithClass(Constants.FRAGMENT_ALL_LISTS)
+            HabitList.getHabitList()
+        }
+
+        HabitList.currentHabitList.observe(this) {
             allListsFragment.filter()
         }
 

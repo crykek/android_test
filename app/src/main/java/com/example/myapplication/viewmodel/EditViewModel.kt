@@ -6,9 +6,7 @@ import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import com.example.myapplication.data.HabitList
 import com.example.myapplication.data.HabitPriority
-import com.example.myapplication.data.HabitRecord
 import com.example.myapplication.data.HabitType
-import com.example.myapplication.utils.Action
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.GlobalScope
 import kotlinx.coroutines.launch
@@ -47,6 +45,7 @@ class EditViewModel : ViewModel() {
     }
 
     fun submit(
+        uid: String,
         nameFieldValue: String,
         descriptionFieldValue: String,
         priorityFieldValue: Int,
@@ -58,18 +57,19 @@ class EditViewModel : ViewModel() {
 
         val currentHabit = HabitList.currentHabit
 
+        currentHabit.uid = uid
         currentHabit.name = nameFieldValue
         currentHabit.description = descriptionFieldValue
         currentHabit.priority = HabitPriority.getPriorityFromIndex(priorityFieldValue)
         currentHabit.type = typeFieldValue
         currentHabit.times = timesFieldValue
         currentHabit.period = periodFieldValue
-        currentHabit.color = color
+        //currentHabit.color = color
         currentHabit.colorIndex = mutableCurrentColorIndex.value ?: 0
 
         GlobalScope.launch(Dispatchers.IO) {
 
-            if (currentHabit.position >= HabitList.currentCount) {
+            if (currentHabit.uid == "0") {
                 HabitList.addHabit(currentHabit)
             } else {
                 HabitList.updateHabit(currentHabit)

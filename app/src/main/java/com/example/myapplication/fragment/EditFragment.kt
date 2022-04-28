@@ -11,6 +11,7 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
 import com.example.myapplication.R
+import com.example.myapplication.data.HabitList
 import com.example.myapplication.data.HabitPriority
 import com.example.myapplication.data.HabitRecord
 import com.example.myapplication.data.HabitType
@@ -139,6 +140,7 @@ class EditFragment : Fragment() {
 
     private fun submit() {
         editViewModel.submit(
+            HabitList.currentHabit.uid,
             nameField.text.toString(),
             descriptionField.text.toString(),
             priorityField.selectedItemPosition,

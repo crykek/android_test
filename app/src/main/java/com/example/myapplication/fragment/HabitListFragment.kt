@@ -29,6 +29,7 @@ class HabitListFragment(private val habitType: HabitType) : Fragment(), RecycleV
     private lateinit var habitsRecycleView: RecyclerView
     private lateinit var adapter: RecycleViewAdapter
 
+    private var allData: List<HabitRecord> = ArrayList()
     private var filteredData: ArrayList<HabitRecord> = ArrayList()
     private val filteredPriorities: ArrayList<HabitPriority> = arrayListOf()
     private var filteredName: String = ""
@@ -57,7 +58,7 @@ class HabitListFragment(private val habitType: HabitType) : Fragment(), RecycleV
         habitsRecycleView.layoutManager = LinearLayoutManager(activity as Context)
         habitsRecycleView.setHasFixedSize(true)
 
-        filterAndUpdateList()
+        HabitList.getInitialHabitList()
 
         addButton.setOnClickListener {
             listViewModel.startAdding(
@@ -91,11 +92,16 @@ class HabitListFragment(private val habitType: HabitType) : Fragment(), RecycleV
         HabitList.currentHabitRead.observe(activity as AppCompatActivity) {
             listViewModel.startEditing(it)
         }
+
+        HabitList.currentHabitList.observe(activity as AppCompatActivity) {
+            allData = it;
+            filterAndUpdateList()
+        }
     }
 
     fun filterAndUpdateList() {
         listViewModel.filterHabits(
-            HabitList.getHabitList(),
+            allData,
             arrayListOf(NameFilter(filteredName), TypeFilter(habitType), PriorityFilter(filteredPriorities)),
             filteredData
         )
@@ -111,6 +117,6 @@ class HabitListFragment(private val habitType: HabitType) : Fragment(), RecycleV
     }
 
     override fun onItemClick(position: Int) {
-        HabitList.getHabitWithPosition(filteredData[position].position)
+        HabitList.getHabitWithUid(filteredData[position].uid)
     }
 }

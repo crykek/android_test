@@ -16,6 +16,7 @@
         <entry key="app/src/main/res/layout/bottom_sheet_fragment.xml" value="0.25" />
         <entry key="app/src/main/res/layout/info_fragment.xml" value="0.16510416666666666" />
         <entry key="app/src/main/res/layout/list_fragment.xml" value="0.333786231884058" />
+        <entry key="app/src/main/res/layout/navigation_view_header.xml" value="0.15625" />
         <entry key="app/src/main/res/layout/recycler_list_item.xml" value="0.25" />
         <entry key="app/src/main/res/layout/side_menu.xml" value="0.15625" />
         <entry key="app/src/main/res/menu/nav_menu.xml" value="0.171875" />

@@ -3,12 +3,13 @@ package com.example.myapplication.data
 import androidx.room.Entity
 import androidx.room.PrimaryKey
 import androidx.room.TypeConverters
+import com.google.gson.annotations.SerializedName
 
 @Entity
 data class HabitRecord(
 
     @PrimaryKey
-    val position: Int,
+    var uid: String,
 
     var name: String,
     var description: String,
@@ -21,6 +22,6 @@ data class HabitRecord(
 
     var times: String,
     var period: String,
-    var color: Int,
+   // var color: Int,
     var colorIndex: Int
 )

@@ -20,9 +20,12 @@ interface HabitRecordDao {
     @Update
     fun update(habitRecord: HabitRecord)
 
-    @Query("SELECT * FROM HabitRecord WHERE position = :position")
-    fun getHabitWithPosition(position: Int): HabitRecord
+    @Query("SELECT * FROM HabitRecord WHERE uid = :uid")
+    fun getHabitWithUid(uid: String): HabitRecord
 
-    @Query("SELECT COUNT(position) FROM HabitRecord")
+    @Query("SELECT EXISTS (SELECT 1 FROM HabitRecord WHERE uid = :uid)")
+    fun exists(uid: String): Boolean
+
+    @Query("SELECT COUNT(uid) FROM HabitRecord")
     fun getHabitCount(): Int
 }

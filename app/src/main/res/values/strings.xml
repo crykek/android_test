@@ -47,8 +47,8 @@
     <!-- Дефолтные значения -->
     <string name="name_default">Пробежка</string>
     <string name="description_default">Пробежать по стадиону</string>
-    <string name="times_default">10 минут</string>
-    <string name="period_default">Каждый день</string>
+    <string name="times_default">10</string>
+    <string name="period_default">5</string>
 
     <string name="priority_high">Высокий</string>
     <string name="priority_medium">Средний</string>
