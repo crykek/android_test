@@ -1,10 +1,11 @@
 package com.example.myapplication.utils
 
-import com.example.myapplication.data.HabitRecord
+import com.example.myapplication.domain.HabitRecord
 import com.google.gson.JsonElement
 import com.google.gson.JsonObject
 import com.google.gson.JsonSerializationContext
 import com.google.gson.JsonSerializer
+import org.json.JSONArray
 import java.lang.reflect.Type
 import java.util.Calendar
 

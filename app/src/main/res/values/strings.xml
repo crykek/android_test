@@ -30,19 +30,28 @@
     <string name="priority">Приоритет</string>
     <string name="type">Тип</string>
     <string name="times">Количество выполнений</string>
-    <string name="period">Период</string>
+    <string name="period">Период, дни</string>
     <string name="color_picker_title">Выберите цвет</string>
     <string name="color_picker_current_rgb">R: %d G: %d B: %d</string>
     <string name="color_picker_current_hsv">H: %.0f S: %.2f V: %.2f</string>
     <string name="filter_title">Фильтрация</string>
     <string name="filter_name">По имени</string>
     <string name="filter_priority">По приоритету</string>
+    <string name="habit_done">Выполнить</string>
+    <string name="times_title">Количество выполнений: </string>
+    <string name="period_title">Период выполнений, дни: </string>
 
     <!-- Типы привычек -->
     <string name="type_positive">Полезная</string>
     <string name="type_negative">Вредная</string>
     <string name="all_positive">Полезные</string>
     <string name="all_negative">Вредные</string>
+
+    <!-- Toast -->
+    <string name="positive_more">You are breathtaking!</string>
+    <string name="positive_less">Стоит выполнить еще %d раз</string>
+    <string name="negative_more">Хватит это делать</string>
+    <string name="negative_less">Можно выполнить еще  %d раз</string>
 
     <!-- Дефолтные значения -->
     <string name="name_default">Пробежка</string>

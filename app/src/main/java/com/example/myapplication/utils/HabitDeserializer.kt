@@ -1,7 +1,7 @@
 package com.example.myapplication.utils
 
 import com.example.myapplication.data.HabitPriority
-import com.example.myapplication.data.HabitRecord
+import com.example.myapplication.domain.HabitRecord
 import com.example.myapplication.data.HabitType
 import com.google.gson.JsonDeserializationContext
 import com.google.gson.JsonDeserializer
@@ -17,6 +17,6 @@ class HabitDeserializer : JsonDeserializer<HabitRecord> {
         HabitType.getHabitFromIndex(json.asJsonObject.get("type").asInt),
         json.asJsonObject.get("frequency").asString,
         json.asJsonObject.get("count").asString,
-        json.asJsonObject.get("color").asInt
+        json.asJsonObject.get("color").asInt,
     )
 }

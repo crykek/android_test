@@ -1,6 +1,6 @@
 package com.example.myapplication.filter
 
-import com.example.myapplication.data.HabitRecord
+import com.example.myapplication.domain.HabitRecord
 
 class NameFilter(private val name: String) : IFilter {
     override fun filter(record: HabitRecord): Boolean =

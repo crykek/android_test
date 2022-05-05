@@ -5,13 +5,16 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.View.OnClickListener
 import android.view.ViewGroup
+import android.widget.Button
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import com.example.myapplication.R
+import com.example.myapplication.activity.MainActivity
 import com.example.myapplication.data.*
+import com.example.myapplication.domain.HabitRecord
 
 class RecycleViewAdapter(private var habitList: List<HabitRecord>, private val context: Context,
-                         private val listener: OnItemClickListener
+                         private val listener: OnItemClickListener, private val habitDoneContext: MainActivity
 ): RecyclerView.Adapter<RecycleViewAdapter.ViewHolder>() {
 
     inner class ViewHolder(itemView: View): RecyclerView.ViewHolder(itemView), OnClickListener {
@@ -21,6 +24,7 @@ class RecycleViewAdapter(private var habitList: List<HabitRecord>, private val c
         val typeView: TextView = itemView.findViewById<TextView>(R.id.item_type)
         val timesView: TextView = itemView.findViewById<TextView>(R.id.item_times)
         val periodView: TextView = itemView.findViewById<TextView>(R.id.item_period)
+        val doneButton: Button = itemView.findViewById<Button>(R.id.done_button)
 
         init {
             itemView.setOnClickListener(this)
@@ -62,6 +66,10 @@ class RecycleViewAdapter(private var habitList: List<HabitRecord>, private val c
         holder.timesView.text = currentItem.times
         holder.periodView.text = currentItem.period
         holder.itemView.setBackgroundColor(Colors.colors[currentItem.colorIndex])
+
+        holder.doneButton.setOnClickListener {
+            habitDoneContext.habitDone(currentItem)
+        }
     }
 
     override fun getItemCount(): Int {

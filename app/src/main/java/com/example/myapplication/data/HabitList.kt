@@ -1,14 +1,17 @@
 package com.example.myapplication.data
 
 import android.content.Context
-import androidx.appcompat.app.AppCompatActivity
-import androidx.lifecycle.LiveData
-import androidx.lifecycle.MutableLiveData
 import androidx.room.Room
-import com.example.myapplication.network.NetworkManager
+import com.example.myapplication.domain.HabitRecord
+import com.example.myapplication.data.network.NetworkManager
+import com.example.myapplication.domain.DoneHabit
+import com.example.myapplication.utils.UIDResponse
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.GlobalScope
+import kotlinx.coroutines.flow.Flow
+import kotlinx.coroutines.flow.first
 import kotlinx.coroutines.launch
+import java.util.Calendar
 
 object HabitList {
     private lateinit var db: HabitDataBase
@@ -16,90 +19,45 @@ object HabitList {
 
     lateinit var currentHabit: HabitRecord
 
-    private var mutableCurrentHabitRead: MutableLiveData<HabitRecord> = MutableLiveData()
-    var currentHabitRead: LiveData<HabitRecord> = mutableCurrentHabitRead
-
-    private var mutableHabitList: MutableLiveData<List<HabitRecord>> = MutableLiveData()
-    var currentHabitList: LiveData<List<HabitRecord>> = mutableHabitList
-
-    private var readLocal: Boolean = false
-    private var readRemote: Boolean = false
-
-    private lateinit var habitWithoutId: HabitRecord
-
     fun initDatabase(context: Context, networkManager: NetworkManager) {
         db = Room.databaseBuilder(context, HabitDataBase::class.java, "HabitDB").fallbackToDestructiveMigration()
             .allowMainThreadQueries().build()
 
         this.networkManager = networkManager
-        this.networkManager.initialize()
+    }
 
-        this.networkManager.habitList.observe(context as AppCompatActivity) {
-            readRemote = true
-            if (readLocal) {
-                readLocal = false
-                readRemote = false
-                syncData()
-            }
-        }
+    suspend fun updateHabitRemote(habit: HabitRecord): UIDResponse {
+        return networkManager.createOrUpdateHabit(habit)
+    }
 
-        this.mutableHabitList.observe(context as AppCompatActivity) {
-            readLocal = true
-            if (readRemote) {
-                readRemote = false
-                readLocal = false
-                syncData()
-            }
-        }
+    fun getHabitList(): Flow<List<HabitRecord>> {
+        return db.habitRecordDao().getAll()
+    }
 
-        this.networkManager.createdId.observe(context as AppCompatActivity) {
-            if (this::habitWithoutId.isInitialized) {
-                if (it == "0") {
-                    db.habitRecordDao().update(habitWithoutId)
-                } else {
-                    habitWithoutId.uid = it
-                    db.habitRecordDao().insert(habitWithoutId)
-                }
-                getHabitList()
-            }
+    fun updateHabit(habit: HabitRecord) {
+        if (habitWithUidExist(habit.uid)) {
+            db.habitRecordDao().update(habit)
+        } else {
+            db.habitRecordDao().insert(habit)
         }
     }
 
-    private fun syncData() {
-        for (elem in networkManager.habitList.value!!) {
-            val localElem = db.habitRecordDao().getHabitWithUid(elem.uid)
-            networkManager.createOrUpdateHabit(localElem)
-        }
-    }
-
-    fun getInitialHabitList() {
+    fun doneHabit(habit: HabitRecord) {
+        val time = Calendar.getInstance().timeInMillis
+        habit.dones.add(time)
         GlobalScope.launch(Dispatchers.IO) {
-            networkManager.getHabitList()
-            mutableHabitList.postValue(db.habitRecordDao().getAll())
+            db.habitRecordDao().update(habit)
+            networkManager.doneHabit(DoneHabit(time, habit.uid))
         }
     }
 
-    fun getHabitList() {
-        mutableHabitList.postValue(db.habitRecordDao().getAll())
+    fun getHabitDoneTimes(habit: HabitRecord): ArrayList<Long> {
+        return habit.dones
     }
 
-    suspend fun addHabit(habit: HabitRecord) {
-        habitWithoutId = habit
-
-        networkManager.createOrUpdateHabit(habit)
+    fun getHabitWithUid(uid: String): Flow<HabitRecord> {
+        return db.habitRecordDao().getHabitWithUid(uid)
     }
 
-    suspend fun updateHabit(habit: HabitRecord) {
-        //db.habitRecordDao().update(habit)
-        habitWithoutId = habit
-        networkManager.createOrUpdateHabit(habit)
-    }
-
-    fun getHabitWithUid(uid: String) {
-        mutableCurrentHabitRead.value = db.habitRecordDao().getHabitWithUid(uid)
-    }
-
-    fun habitWithUidExist(uid: String): Boolean = db.habitRecordDao().exists(uid)
-
-    private fun getHabitCount() = db.habitRecordDao().getHabitCount()
+    private fun habitWithUidExist(uid: String): Boolean = db.habitRecordDao().exists(uid)
 }

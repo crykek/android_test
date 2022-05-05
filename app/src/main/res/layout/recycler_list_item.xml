@@ -53,12 +53,31 @@
                 app:layout_constraintEnd_toEndOf="parent"
                 android:textSize="16sp"/>
         <TextView
+                android:id="@+id/item_times_title"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/times_title"
+                android:layout_marginTop="10dp"
+                app:layout_constraintTop_toBottomOf="@id/item_description"
+                app:layout_constraintStart_toStartOf="@id/item_description"
+                android:textSize="16sp"/>
+        <TextView
                 android:id="@+id/item_times"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="@string/times_default"
                 android:layout_marginTop="10dp"
+                android:layout_marginStart="10dp"
                 app:layout_constraintTop_toBottomOf="@id/item_description"
+                app:layout_constraintStart_toEndOf="@id/item_times_title"
+                android:textSize="16sp"/>
+        <TextView
+                android:id="@+id/item_period_title"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/period_title"
+                android:layout_marginTop="10dp"
+                app:layout_constraintTop_toBottomOf="@id/item_times_title"
                 app:layout_constraintStart_toStartOf="@id/item_description"
                 android:textSize="16sp"/>
         <TextView
@@ -67,8 +86,19 @@
                 android:layout_height="wrap_content"
                 android:text="@string/period_default"
                 android:layout_marginTop="10dp"
+                android:layout_marginStart="10dp"
                 app:layout_constraintTop_toBottomOf="@id/item_times"
-                app:layout_constraintStart_toStartOf="@id/item_times"
+                app:layout_constraintStart_toEndOf="@id/item_period_title"
                 android:textSize="16sp"/>
+        <Button
+                android:id="@+id/done_button"
+                android:layout_width="match_parent"
+                android:layout_height="40dp"
+                app:layout_constraintTop_toBottomOf="@+id/item_period"
+                android:layout_marginHorizontal="40dp"
+                android:text="@string/habit_done"
+                android:backgroundTint="@color/teal_200"
+                style="@style/Widget.MaterialComponents.Button.TextButton"
+        />
     </androidx.constraintlayout.widget.ConstraintLayout>
 </androidx.cardview.widget.CardView>

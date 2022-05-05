@@ -1,6 +1,6 @@
 package com.example.myapplication.filter
 
-import com.example.myapplication.data.HabitRecord
+import com.example.myapplication.domain.HabitRecord
 import com.example.myapplication.data.HabitType
 
 class TypeFilter(private val habitType: HabitType) : IFilter {

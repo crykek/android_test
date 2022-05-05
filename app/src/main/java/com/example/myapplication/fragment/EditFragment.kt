@@ -11,9 +11,11 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
 import com.example.myapplication.R
+import com.example.myapplication.application.MainApp
 import com.example.myapplication.data.*
-import com.example.myapplication.viewmodel.EditViewModel
-import com.example.myapplication.viewmodel.EditViewModelFactory
+import com.example.myapplication.domain.HabitRecord
+import com.example.myapplication.presentation.viewmodel.EditViewModel
+import com.example.myapplication.presentation.viewmodel.EditViewModelFactory
 
 class EditFragment : Fragment() {
 
@@ -148,7 +150,7 @@ class EditFragment : Fragment() {
             },
             timesField.text.toString(),
             periodField.text.toString(),
-            colors[editViewModel.currentColorIndex.value ?: 0]
+            requireActivity().application as MainApp
         )
     }
 
